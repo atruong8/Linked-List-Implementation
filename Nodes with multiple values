@@ -1,0 +1,36 @@
+//lab 9
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct student
+{
+	int id;
+	char lastName[20];
+	char firstName[20];
+	float gpa;
+};
+
+void ResizeArray(struct student *studentArray[], int* size);
+
+int main()
+{
+//for anything
+}
+
+void ResizeArray(struct student*studentArray[], int*size)
+{
+struct student*studentarr = malloc(2*(*size)*sizeof(struct student));  //creats an array twice the size
+  if(studentarr == NULL)						//checks it too
+  {
+  exit(1);
+  }
+
+memcpy(studentarr,*studentArray,(*size)*sizeof(struct student)); //copies the contents from the old array to the new one
+free(*studentArray);					//frees the old one and
+*studentArray = studentarr;				//give the old one the new array
+*size = *size*2;					//doubles the size
+}
+
+
+
